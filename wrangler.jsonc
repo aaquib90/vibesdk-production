@@ -63,13 +63,9 @@
 			"class_name": "UserAppSandboxService",
 			"image": "./SandboxDockerfile",
             // Altering max_instances value will have no effect. Please use the MAX_SANDBOX_INSTANCES var instead.
-			"max_instances": 2900,
+			"max_instances": 10,
             // ATTENTION: Altering instance_type value will have no effect. Please use the SANDBOX_INSTANCE_TYPE var instead.
-            "instance_type": {
-                "vcpu": 4,
-                "memory_mib": 4096,
-                "disk_mb": 10240
-            },
+            "instance_type": "standard",
             "rollout_step_percentage": 100
 		}
 	],
@@ -129,13 +125,8 @@
 	],
 	"routes": [
         {
-            "pattern": "build.cloudflare.dev",
+            "pattern": "sportbuilt.me",
             "custom_domain": true
-        },
-        {
-            "pattern": "*build.cloudflare.dev/*",
-            "custom_domain": false,
-            "zone_id": "f14aecaf571802180f79dcba9a8d34c3"
         }
     ],
 	"vars": {
