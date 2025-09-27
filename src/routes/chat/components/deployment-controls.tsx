@@ -121,7 +121,7 @@ export function DeploymentControls({
 					subtitle: "Deploy your application to Cloudflare Workers",
 					buttonDisabled: false,
 					buttonVariant: "primary" as const,
-					buttonClass: "bg-accent text-white border-orange-500 dark:border-orange-600 hover:scale-105"
+					buttonClass: "bg-accent text-white border-blue-500 dark:border-blue-600 hover:scale-105"
 				};
 			
 			case DeploymentState.DEPLOYING:
@@ -164,7 +164,7 @@ export function DeploymentControls({
 					buttonDisabled: !isPhase1Complete,
 					buttonVariant: "primary" as const,
 					buttonClass: isPhase1Complete 
-						? "bg-orange-500 hover:bg-orange-600 dark:bg-orange-600 dark:hover:bg-orange-700 text-white border-orange-500 dark:border-orange-600 hover:scale-105"
+						? "bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 text-white border-blue-500 dark:border-blue-600 hover:scale-105"
 						: "bg-bg-3 dark:bg-bg-3 text-text-tertiary dark:text-text-tertiary border-muted dark:border-muted cursor-not-allowed"
 				};
 			
