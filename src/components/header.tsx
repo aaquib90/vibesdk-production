@@ -18,7 +18,7 @@ export function Header({
 				<Link to="/">
 					<CloudflareLogo
 						className="h-4 text-bg-bright-dim"
-						aria-label="Cloudflare v1"
+						aria-label="VibeSDK"
 					/>
 				</Link>
 			</h1>

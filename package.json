@@ -11,6 +11,7 @@
 		"lint": "eslint .",
 		"preview": "npm run build && vite preview",
 		"deploy": "bun --env-file .prod.vars scripts/deploy.ts && bun run db:generate && bun run db:migrate:remote",
+		"deploy:simple": "npx tsx scripts/simple-deploy.ts",
 		"local": "wrangler dev --experimental-vectorize-bind-to-prod --local",
 		"cf-typegen": "wrangler types --include-runtime false",
 		"test": "vitest run",
