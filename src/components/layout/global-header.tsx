@@ -3,7 +3,6 @@ import { AuthButton } from '../auth/auth-button';
 import { ThemeToggle } from '../theme-toggle';
 import { motion } from 'framer-motion';
 import { useAuth } from '@/contexts/auth-context';
-import { GithubIcon } from 'lucide-react';
 import { CloudflareLogo } from '../icons/logos';
 
 export function GlobalHeader() {
