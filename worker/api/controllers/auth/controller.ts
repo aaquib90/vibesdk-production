@@ -644,6 +644,16 @@ export class AuthController extends BaseController {
         _context: RouteContext
     ): Promise<Response> {
         try {
+            // Debug logging to check environment variables
+            console.log('Auth providers check:', {
+                hasGoogleClientId: !!env.GOOGLE_CLIENT_ID,
+                hasGoogleClientSecret: !!env.GOOGLE_CLIENT_SECRET,
+                hasGithubClientId: !!env.GITHUB_CLIENT_ID,
+                hasGithubClientSecret: !!env.GITHUB_CLIENT_SECRET,
+                googleClientIdLength: env.GOOGLE_CLIENT_ID?.length || 0,
+                googleClientSecretLength: env.GOOGLE_CLIENT_SECRET?.length || 0
+            });
+            
             const providers = {
                 google: !!env.GOOGLE_CLIENT_ID && !!env.GOOGLE_CLIENT_SECRET,
                 github: !!env.GITHUB_CLIENT_ID && !!env.GITHUB_CLIENT_SECRET,
