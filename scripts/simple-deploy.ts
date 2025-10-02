@@ -10,6 +10,7 @@ import { execSync } from 'child_process';
 import { existsSync, readFileSync, writeFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { CloudflareCachePurger } from './purge-cache.js';
 
 // Get current directory for ES modules
 const __filename = fileURLToPath(import.meta.url);
@@ -118,6 +119,20 @@ class SimpleDeploymentManager {
 	}
 
 	/**
+	 * Purges Cloudflare cache after deployment
+	 */
+	private async purgeCache(): Promise<void> {
+		try {
+			const purger = new CloudflareCachePurger();
+			await purger.purgeAllCache();
+		} catch (error) {
+			console.warn('⚠️  Cache purging failed, but deployment succeeded:');
+			console.warn(`   ${error instanceof Error ? error.message : String(error)}`);
+			console.warn('   Users may need to hard refresh to see changes immediately.');
+		}
+	}
+
+	/**
 	 * Main deployment orchestration method
 	 */
 	public async deploy(): Promise<void> {
@@ -137,6 +152,10 @@ class SimpleDeploymentManager {
 			console.log('\n📋 Step 2: Deploying to Cloudflare Workers...');
 			await this.wranglerDeploy();
 
+			// Step 4: Purge Cloudflare cache
+			console.log('\n📋 Step 3: Purging Cloudflare cache...');
+			await this.purgeCache();
+
 			// Deployment complete
 			const duration = Math.round((Date.now() - startTime) / 1000);
 			console.log(
@@ -144,6 +163,9 @@ class SimpleDeploymentManager {
 			);
 			console.log(
 				'✅ Your application is now live! 🚀',
+			);
+			console.log(
+				'✨ Cache has been purged - users will see changes immediately!',
 			);
 		} catch (error) {
 			console.error('\n❌ Deployment failed:');

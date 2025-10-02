@@ -22,7 +22,13 @@ npx wrangler deploy
 
 if [ $? -eq 0 ]; then
     echo "✅ Deployment completed successfully!"
+    
+    # Purge Cloudflare cache
+    echo "🧹 Purging Cloudflare cache..."
+    npx tsx scripts/purge-cache.ts all
+    
     echo "🌐 Your app should now be live on Cloudflare Workers"
+    echo "✨ Cache has been purged - users will see changes immediately!"
 else
     echo "❌ Deployment failed"
     exit 1
